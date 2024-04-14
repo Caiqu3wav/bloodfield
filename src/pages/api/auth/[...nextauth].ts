@@ -1,8 +1,7 @@
 import NextAuth from "next-auth"
 import CredentialProvider from "next-auth/providers/credentials";
-import { signIn } from "next-auth/react";
 
-export const authOptions = {
+const handler = NextAuth({
   // Configure one or more authentication providers
   providers: [
     CredentialProvider({
@@ -32,15 +31,10 @@ export const authOptions = {
       }),
     // ...add more providers here
   ],
-  callbacks: {
-
-  },
   pages: {
     signIn: '/signin',
   },
   secret: process.env.NEXTAUTH_SECRET,
-}
-
-const handler = NextAuth(authOptions)
+})
 
 export { handler as GET, handler as POST }
