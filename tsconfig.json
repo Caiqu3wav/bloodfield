@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/component/TopCards.jsx", "backend/database/schemas/Product.cts", "src/pages/api/auth/[...nextauth].ts", "src/app/signin/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/component/TopCards.jsx", "backend/database/schemas/Product.cts", "src/pages/api/auth/[...nextauth].ts", "src/app/signin/page.jsx", "backend/database/index.js"],
   "exclude": ["node_modules"]
 }
