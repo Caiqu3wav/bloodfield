@@ -1,7 +1,7 @@
 import NextAuth, { Session } from "next-auth";
 import { Account, User as AuthUser } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
-import connectDB from "../../db";
+import connectDB from "../db";
 import User, { UserDocument } from "@/models/User";
 import bcrypt from "bcryptjs";
 
@@ -19,7 +19,7 @@ export const authOptions: any = {
           email: { label: 'Email', type: 'email' },
           password: { label: 'Password', type: 'password' }
         },
-        async authorize(credentials: any) {
+        async authorize(credentials: Record<"email" | "password", string>) {
           await connectDB();
           try {
             const user = await User.findOne({ email: credentials.email });
@@ -36,6 +36,7 @@ export const authOptions: any = {
                 return user;
               }
             }
+            return null;
           } catch (err: any) {
             throw new Error(err);
           }
