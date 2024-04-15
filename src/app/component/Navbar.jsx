@@ -8,10 +8,12 @@ import { SignOutBtn } from "./SignOutBtn";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
+  const router = useRouter();
 
     const navItems = [
         {
@@ -54,9 +56,13 @@ export default function Navbar() {
       };
   }, [isActive]);
 
+  const handleLogo = () => {
+    router.push("/")
+  }
+
   return (
     <header className="flex justify-between items-center bg-gradient-to-b from-black to-red-950">
-        <img src="/img/bf-logo.png" className="w-[100px] midfour1:w-[70px]" alt="" />
+        <img src="/img/bf-logo.png" className="w-[100px] midfour1:w-[70px] cursor-pointer" onClick={handleLogo} alt="" />
       <nav className="flex flex-col items-center justify-center gap-2"><form className="flex border-b-2 pb-2 border-blue-50">
         <input type="text" placeholder="O que você procura?" className="rounded-tl-xl w-[600px] majorthree:w-[300px] text-black
          midthree:w-[150px] px-2 bg-gray-400
@@ -66,7 +72,8 @@ export default function Navbar() {
         </div></form>
       <ul className="flex gap-4 midthree:hidden">
         {navItems.map((items, i) => (
-          <a className="font-semibold uppercase no-underline" key={i} href={items.href}><li className="font-semibold">{items.title}</li></a> 
+          <a className="font-semibold uppercase no-underline" key={i} href={items.href}><li className="font-semibold no-underline">
+            {items.title}</li></a> 
         ))}
         </ul>
         <button aria-label="Open Menu" onClick={toggleMenu} className="btn-hamburguer text-gray-400 hidden midthree:block
@@ -104,7 +111,11 @@ export default function Navbar() {
       <Link href="/signin" className="no-underline"><button className="flex justify-center rounded-md mr-2 text-black u gap-1 items-center
        w-[100px] midfour:w-[60px] py-2 bg-gray-400 midfour:text-[13px]">Login<BiSolidLogInCircle 
       className="text-3xl midfour1:text-lg"/></button></Link>) : (
+        <div className="flex flex-col items-center justify-center gap-1">
+        <p className="flex gap-[2px] midtwo2:text-12px">
+          <span className="text-gray-500">Olá,</span><span className="text-orange-500">{session.user.name}</span></p>
       <SignOutBtn/>
+      </div>
     )}
       <CartControl/>
       </div>
