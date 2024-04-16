@@ -19,6 +19,7 @@ export const authOptions: any = {
           email: { label: 'Email', type: 'email' },
           password: { label: 'Password', type: 'password' }
         },
+            //@ts-ignore
         async authorize(credentials: Record<"email" | "password", string>) {
           await connectDB();
           try {
