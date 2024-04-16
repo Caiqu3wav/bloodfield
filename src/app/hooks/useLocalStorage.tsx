@@ -8,7 +8,7 @@ export function useLocalStorage<T extends any[]>(item: string, initialValue: T) 
     if (typeof window === 'undefined') return;
     let value = localStorage.getItem(item)
     if(value) setValue(JSON.parse(value))
-  }, [window]);
+  }, [item]);
 
   useEffect(() => {
     if(value.length === 0) {
