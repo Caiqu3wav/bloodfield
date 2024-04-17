@@ -14,23 +14,27 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
-
-    const navItems = [
-        {
-            title: "Masculino",
-            href: "/",
-        },
-        {
-            title: "Feminino",
-            href: "/",
-        },{
-            title: "Home",
-            href: "/",
-        },{
-            title: "Home",
-            href: "/",
-        },
-    ];
+  
+  const navItems = [
+    {
+        title: "Masculino",
+        href: "/",
+    },
+    {
+        title: "Feminino",
+        href: "/",
+    },{
+        title: "Moletom",
+        href: "/",
+    },{
+        title: "Camiseta",
+        href: "/",
+    },
+    {
+      title: "Calça",
+      href: "/",
+  },
+];
 
     const toggleMenu = () => {
       setIsActive(!isActive);
