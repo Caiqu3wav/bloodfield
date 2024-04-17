@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
 import Image from 'next/image';
-import Vampyere from "../../../public/clothesimg/cradle-of-filth_supreme-vampyric-evil_long-sleeve-2500.jpg";
-import Vampyere2 from "../../../public/clothesimg/cradle-of-filth_vigor_mortis_t-shirt-800.jpg";
-import Vet from "../../../public/clothesimg/undercover-SS20-draculahands-coat.jpg";
+import Vampyere from "../../../public/uploads/cradle-of-filth_supreme-vampyric-evil_long-sleeve-2500.jpg";
+import Vampyere2 from "../../../public/uploads/cradle-of-filth_vigor_mortis_t-shirt-800.jpg";
+import Vet from "../../../public/uploads/undercover-SS20-draculahands-coat.jpg";
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel  from 'react-bootstrap/Carousel';
 

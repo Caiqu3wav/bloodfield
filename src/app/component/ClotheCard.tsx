@@ -1,7 +1,7 @@
 import Image from "next/image"
-import Jdei from "../../../public/clothesimg/undercover-psycho-collection_coat.jpg"
+import Jdei from "../../../public/uploads/undercover-psycho-collection_coat.jpg"
 
-export default function ClotheCars() {
+export default function ClotheCard() {
   return (
     <div className="h-[380px] w-[240px] majortwo3.1:w-[200px] midtw:w-[155px] flex 
     midtw:h-[300px] flex-col items-center justify-center

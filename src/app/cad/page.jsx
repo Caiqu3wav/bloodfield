@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function CadPage() {
     const[name, setName] = useState("");
-    const [marca, setMarca] = useState("");
+    const [marca, setMarca] = useState([]);
     const [categoria, setCategoria] = useState("");
     const [preco, setPreco] = useState("");
     const [foto, setFoto] = useState(null);
@@ -17,8 +17,9 @@ export default function CadPage() {
     }
 
     const handleMarcaChange = (e) => {
-        setMarca(e.target.value);
-    }
+      const marcas = e.target.value.split(',').map(marca => marca.trim());
+      setMarca(marcas);
+  }
 
     const handleCategoriaChange = (e) => {
       setCategoria(e.target.value);
@@ -77,14 +78,11 @@ export default function CadPage() {
     </div>
     <div className='flex gap-2'>
       <label htmlFor="marca">Marca:</label>
-      <input className='bg-gray-600 text-white  rounded-lg'
-        type="text" 
-        id="marca" 
-        value={marca}
-        name="marca" 
-        onChange={handleMarcaChange}
-        required 
-      />
+      <input className='bg-gray-600 text-white  rounded-lg' 
+      type="text" id="marca" 
+      value={marca.join(',')} 
+      name="marca" 
+      onChange={handleMarcaChange} required />
     </div>
     <div className='flex gap-2'>
       <label htmlFor="marca">Categoria:</label>
