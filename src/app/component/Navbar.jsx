@@ -24,12 +24,16 @@ export default function Navbar() {
             title: "Feminino",
             href: "/",
         },{
-            title: "Home",
+            title: "Moletom",
             href: "/",
         },{
-            title: "Home",
+            title: "Camiseta",
             href: "/",
         },
+        {
+          title: "Calça",
+          href: "/",
+      },
     ];
 
     const toggleMenu = () => {
