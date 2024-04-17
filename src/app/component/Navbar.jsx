@@ -108,8 +108,9 @@ export default function Navbar() {
       </nav>
       <div className="flex flex-col items-center justify-center gap-3 ">
       {!session ? (
-      <Link href="/signin" className="no-underline"><button className="flex justify-center rounded-md mr-2 text-black u gap-1 items-center
-       w-[100px] midfour:w-[60px] py-2 bg-gray-400 midfour:text-[13px]">Login<BiSolidLogInCircle 
+      <Link href="/signin" className="no-underline"><button className="flex justify-center rounded-md mr-2 text-black u gap-1 
+      items-center
+       w-[100px] midfour:w-[60px] py-2 bg-gray-400 transition-colors duration-500 hover:bg-red-600 midfour:text-[13px]">Login<BiSolidLogInCircle 
       className="text-3xl midfour1:text-lg"/></button></Link>) : (
         <div className="flex flex-col items-center justify-center gap-1">
         <p className="flex gap-[2px] midtwo2:text-12px">
