@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function SignInForm() {
   const router = useRouter();
   const [error, setError] = useState("");
-  const { data: session, status: sessionStatus } = useSession();
+   const { data: session, status: sessionStatus } = useSession();
 
   useEffect(() => {
       if (sessionStatus === "authenticated") {
@@ -50,11 +50,12 @@ export default function SignInForm() {
   };
 
   if (sessionStatus === "loading") {
-      return <h1>Carregando...</h1>;
-  }
+    return <h1>Carregando...</h1>;
+}
+
 
   return (
-   sessionStatus !== "authenticated" && (
+    sessionStatus !== "authenticated" && (
     <form className='bg-gray-400 w-[400px] gap-2 rounded-xl flex flex-col items-center justify-center
      h-[300px]' onSubmit={handleSubmit}>
     <div className='flex gap-2'>
@@ -80,6 +81,6 @@ export default function SignInForm() {
     <Link href="/signup"><p className="text-blue-500">Não tem uma conta? Cadastre-se</p></Link>
     {error && <p className='text-red-500'>{error}</p>}
   </form>
+    )
    )
-  );
 }

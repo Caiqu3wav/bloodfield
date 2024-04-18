@@ -1,7 +1,6 @@
 'use client'
 import { FaSearchengin } from "react-icons/fa6";
 import { BiSolidLogInCircle } from "react-icons/bi";
-import { TiShoppingCart } from "react-icons/ti";
 import CartControl from "./CartControl";
 import Link from "next/link";
 import { SignOutBtn } from "./SignOutBtn";

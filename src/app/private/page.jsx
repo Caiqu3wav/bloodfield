@@ -64,7 +64,7 @@ export default function CadPage() {
       <div className='hero-container min-h-[500px] flex items-center justify-center'>
       <form className='bg-gray-400 w-[400px] gap-3 rounded-xl flex flex-col items-center justify-center
      h-[300px]' onSubmit={handleSubmit}>
-      <h1 className='text-xl font-semibold text-black'>Cadastro Produto</h1>
+      <h1 className='text-xl font-semibold text-black'>Cadastrar Produto</h1>
       <div className='flex gap-2'>
       <label htmlFor="name">Nome:</label>
       <input className='text-black  rounded-lg'
@@ -118,7 +118,7 @@ export default function CadPage() {
       />
     </div>
     <button className='px-3 py-1 rounded-xl bg-black text-white 
-    hover:bg-red-600 hover:text-black transition-all duration-500' type="submit">Cadastrar produto</button>
+    hover:bg-red-600 hover:text-black transition-all duration-500' type="submit">Cadastrar</button>
     {error && <p>{error}</p>}
   </form>
       </div>

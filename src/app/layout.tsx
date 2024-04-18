@@ -1,25 +1,26 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import "./fonts.css";
-import { AuthProvider } from '../providers/auth-provider'
+import SessionProvider from '../providers/auth-provider'
+import { getServerSession } from "next-auth";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "BloodField",
   description: "Loja high fashion",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const session = await getServerSession();
   return (
-    <AuthProvider>
     <html lang="pt-br">
       <body>
+      <SessionProvider session={session}>
         {children}
+        </SessionProvider>
         </body>
     </html>
-    </AuthProvider>
   );
 }

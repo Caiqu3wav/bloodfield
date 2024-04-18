@@ -1,3 +1,4 @@
+'use client'
 import "../fonts.css";
 import TopCards from "./TopCards.jsx"
 
