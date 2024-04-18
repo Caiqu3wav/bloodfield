@@ -12,7 +12,7 @@ interface TokenWithRole extends Record<string, any> {
   role: string;
 }
 
-export const authOptions: any = {
+const authOptions: any = {
   providers: [
     CredentialProvider({
       id: "credentials",
