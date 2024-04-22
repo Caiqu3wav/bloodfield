@@ -2,6 +2,7 @@ import "./globals.css";
 import "./fonts.css";
 import SessionProvider from '../providers/auth-provider'
 import { getServerSession } from "next-auth";
+import CartProvider from "@/providers/cartProvider";
 
 export const metadata = {
   title: "BloodField",
@@ -17,9 +18,11 @@ export default async function RootLayout({
   return (
     <html lang="pt-br">
       <body>
+        <CartProvider>
       <SessionProvider session={session}>
         {children}
         </SessionProvider>
+        </CartProvider>
         </body>
     </html>
   );

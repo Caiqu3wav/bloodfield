@@ -1,30 +1,32 @@
 'use client'
 import { FaSearchengin } from "react-icons/fa6";
 import { BiSolidLogInCircle } from "react-icons/bi";
-import CartControl from "./CartControl";
 import Link from "next/link";
 import { SignOutBtn } from "./SignOutBtn";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useRouter } from "next/navigation";
+import { useShoppingCart } from 'use-shopping-cart'
+import { TiShoppingCart } from "react-icons/ti"
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
+  const {handleCartClick} = useShoppingCart()
   
   const navItems = [
     {
         title: "Masculino",
-        href: "/",
+        href: "/Men",
     },
     {
         title: "Feminino",
-        href: "/",
+        href: "/Women",
     },{
         title: "Moletom",
-        href: "/",
+        href: "/Men",
     },{
         title: "Camiseta",
         href: "/",
@@ -40,7 +42,7 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-      const handleEscKeyPress = (e) => {
+      const handleEscKeyPress = (e: any) => {
           if (e.keycode === 27 && isActive) {
               setIsActive(false);
           }
@@ -75,8 +77,8 @@ export default function Navbar() {
         </div></form>
       <ul className="flex gap-4 midthree:hidden">
         {navItems.map((items, i) => (
-          <a className="font-semibold uppercase no-underline" key={i} href={items.href}><li className="font-semibold no-underline">
-            {items.title}</li></a> 
+          <Link className="font-semibold uppercase no-underline" key={i} href={items.href}><li className="font-semibold no-underline">
+            {items.title}</li></Link> 
         ))}
         </ul>
         <button aria-label="Open Menu" onClick={toggleMenu} className="btn-hamburguer text-gray-400 hidden midthree:block
@@ -88,7 +90,6 @@ export default function Navbar() {
           <div
             onClick={() => setIsActive(false)}
             className="absolute inset-0 bg-black opacity-50"
-            tabIndex="0"
           ></div>
         </div>
       )}
@@ -117,12 +118,22 @@ export default function Navbar() {
       className="text-3xl midfour1:text-lg"/></button></Link>) : (
         <div className="flex flex-col items-center justify-center gap-1">
         <p className="flex gap-[2px] midtwo2:text-12px">
-          <span className="text-gray-500">Olá,</span><span className="text-orange-500">{session.user.name}</span></p>
+          <span className="text-gray-500">Olá,</span>
+          <span className="text-orange-500">
+            {
+                      //@ts-ignore
+            session.user.name}</span></p>
       <SignOutBtn/>
       </div>
     )}
-      <CartControl/>
-      </div>
+    <div className="flex divide-x rounded-full bg-black p-1">
+          <button
+            onClick={() => handleCartClick()}
+            className="flex flex-col text-gray-400 text-xl"
+          >
+            <TiShoppingCart />
+          </button>
+        </div></div>
     </header>
   )
 }

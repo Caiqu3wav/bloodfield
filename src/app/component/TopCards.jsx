@@ -1,4 +1,3 @@
-'use client'
 import React from 'react';
 import Image from 'next/image';
 import Vampyere from "../../../public/uploads/cradle-of-filth_supreme-vampyric-evil_long-sleeve-2500.jpg";
