@@ -4,6 +4,7 @@ import BottomHeader from "./component/BottomHeader";
 import CListHome from "./component/CListHome";
 
 export default function Home() {
+  
   return (
     <main className="w-full ">
       <Navbar/>

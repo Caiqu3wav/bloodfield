@@ -2,7 +2,7 @@ import "./globals.css";
 import "./fonts.css";
 import SessionProvider from '../providers/auth-provider'
 import { getServerSession } from "next-auth";
-import CartProvider from "@/providers/cartProvider";
+import { ReduxProviders } from "@/providers/ReduxProvider";
 
 export const metadata = {
   title: "BloodField",
@@ -16,14 +16,14 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession();
   return (
+    <ReduxProviders>
     <html lang="pt-br">
       <body>
-        <CartProvider>
       <SessionProvider session={session}>
         {children}
         </SessionProvider>
-        </CartProvider>
         </body>
     </html>
+    </ReduxProviders>
   );
 }

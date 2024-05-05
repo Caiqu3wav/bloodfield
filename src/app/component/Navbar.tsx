@@ -7,14 +7,13 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useRouter } from "next/navigation";
-import { useShoppingCart } from 'use-shopping-cart'
-import { TiShoppingCart } from "react-icons/ti"
+import CartButton from "./CartButton";
+
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
   const router = useRouter();
-  const {handleCartClick} = useShoppingCart()
   
   const navItems = [
     {
@@ -66,7 +65,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="flex justify-between items-center bg-gradient-to-b from-black to-red-950">
+    <header className="flex justify-between items-center  bg-gradient-to-b from-black to-red-950">
         <img src="/img/bf-logo.png" className="w-[100px] midfour1:w-[70px] cursor-pointer" onClick={handleLogo} alt="" />
       <nav className="flex flex-col items-center justify-center gap-2"><form className="flex border-b-2 pb-2 border-blue-50">
         <input type="text" placeholder="O que você procura?" className="rounded-tl-xl w-[600px] majorthree:w-[300px] text-black
@@ -127,12 +126,7 @@ export default function Navbar() {
       </div>
     )}
     <div className="flex divide-x rounded-full bg-black p-1">
-          <button
-            onClick={() => handleCartClick()}
-            className="flex flex-col text-gray-400 text-xl"
-          >
-            <TiShoppingCart />
-          </button>
+            <CartButton />
         </div></div>
     </header>
   )
