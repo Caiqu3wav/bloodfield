@@ -1,32 +1,39 @@
-import User from "../../../models/User";
-import connectDB from "../db";
+//@ts-nocheck
 import bcrypt from 'bcryptjs';
-import { NextResponse } from "next/server";
+import { NextResponse, } from "next/server.js";
+import mysqlConn from "../mysqlConn.js";
 
-export const POST = async (request: any) => {
-    const { name, email, password } = await request.json();
 
-    await connectDB();
+export const POST = async (req: any) => {
+    const { name, email, password } = await req.json();
 
-    const existingUser = await User.findOne({ email });
+    try{
+    const userExistsQuery = `SELECT * FROM users WHERE email="${email}"`;
+    const existingUser = await mysqlConn(userExistsQuery);
 
-    if (existingUser) {
+    if (existingUser.length > 0) {
         return new NextResponse("Email já utilizado", { status: 400 });
     } 
 
     const hashedPassword = await bcrypt.hash(password, 5);
-    const newUser = new User({
-        name,
-        email,
-        password: hashedPassword,
-    });
+    
+    const insertUserQuery = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
+        const result = await mysqlConn(insertUserQuery, [name, email, hashedPassword]);
 
-    try{
-        await newUser.save();
-        return new NextResponse("Usuário registrado com sucesso", { status: 200 });
-    } catch (err: any) {
-        return new NextResponse(err, {
-            status: 500,
-        });
-    }
+if (result.affectedRows > 0) {
+
+    return new NextResponse("Usuário registrado com sucesso", { status: 200 });
+} else {
+    return new NextResponse("Erro ao registrar user", {status: 500});
+}
+
+} catch (err) {
+    console.error("Erro ao registrar usuario:", err)
+    return new NextResponse(err.message, { status: 500 });
+}
 };
+
+
+export const GET = (Request) => {
+    return new Response("oiii");
+}

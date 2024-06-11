@@ -1,61 +1,41 @@
-import NextAuth, { Session } from "next-auth";
-import { Account, User as AuthUser } from "next-auth";
-import CredentialProvider from "next-auth/providers/credentials";
-import connectDB from "../../db";
-import User, { UserDocument } from "@/models/User";
-
+//@ts-nocheck
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import db from "../../db";
+import util from 'util'
 import bcrypt from "bcryptjs";
 import dotenv from 'dotenv'
 dotenv.config();
 
-interface TokenWithRole extends Record<string, any> {
-  role: string;
-}
+const query = util.promisify(db.query).bind(db);
 
-const authOptions: any = {
-  providers: [
-    CredentialProvider({
-      id: "credentials",
-        name: 'Credentials',
-        credentials: {
-          email: { label: 'Email', type: 'email' },
-          password: { label: 'Password', type: 'password' }
-        },
-            //@ts-ignore
-        async authorize(credentials: any) {
-          await connectDB();
-          try {            //@ts-ignore
-            const user = await User.findOne({ email: credentials.email });
-            if (user) {
-              const isPasswordCorrect = await bcrypt.compare(
-                            //@ts-ignore
-                credentials.password,
-                user.password
-              );
-              if (isPasswordCorrect){
-                if(!user.role) {
-                  user.role = 'user';
-                  await user.save();
-                }
-                return user;
-              }
-            }
-            return null;
-          } catch (err: any) {
-            throw new Error(err);
-          }
-        },
-      }),
-    // ...add more providers here
-  ],
-  callbacks: {
-
-    async signIn({ user, account }: { user: AuthUser; account: Account }){
-      if (account?.provider == "credentials") {
-        return true
-      }
+export const authOptions = {
+    session: {
+        strategy: 'jwt'
     },
-  },
+    providers: [
+        CredentialsProvider({
+            async authorize(credentials) {
+                if (!credentials?.email || !credentials?.password) {
+                    return null;
+                }
+                let user = await query(`SELECT * FROM users WHERE email = '${credentials.email}'`);
+                user = user[0];
+
+                if (!user) {
+                    return null;
+                }
+
+                const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+
+                if (isPasswordCorrect) {
+                    return user
+                } else {
+                  return null
+                }
+            }
+        })
+    ],
   secret: process.env.NEXTAUTH_SECRET,
 }
 

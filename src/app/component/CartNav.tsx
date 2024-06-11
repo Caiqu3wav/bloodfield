@@ -9,7 +9,8 @@ import { useState, useEffect } from "react";
 import { incrementQuantity, decrementQuantity, removeFromCart } from "../redux/cart.slice";
 import { CartProductExtendor } from "../interfaces/Product";
 import { useProductData } from "../hooks/useProductData";
-import styles from "../styles/style.module.scss"
+import styles from "../styles/style.module.scss";
+import {loadStripe} from '@stripe/stripe-js';
 
 interface Props {
     onClose: () => void;
@@ -54,7 +55,20 @@ export default function CartNav({ onClose }: Props) {
         if (quantity > 0){
             return acc + productPrice
         } return acc
-    }, 0)
+    }, 0);
+
+    const handleBuy = async () => {
+        const stripe = await loadStripe("pk_test_51OFpSGAMXpQY86xgdKUQSEqOzR6fdib2XsE5TlaomuwQmWOnBLoHjHSmJCKGeivRAY9dSMlpcd2z28YrgGu5Qw8W005Q7Z9mur");
+
+        const body = {
+            products: cartItems
+        }
+
+        const headers = {
+            "Content-Type":"application/json"
+        }
+
+    }
 
     return (
         <motion.div
@@ -89,7 +103,7 @@ export default function CartNav({ onClose }: Props) {
       </div>
       <div className="flex flex-col">
       <p className="text-black font-semibold">R${product.quantity !== undefined ? (Number(product.attributes.Preco) * product.quantity).toFixed(2) : 0}</p>
-      <button onClick={() => removeAllAction(product.id)} className="py-0 px-2 bg-black text-white absolute mt-11 rounded-lg">X</button>
+      <button onClick={() => removeAllAction(product.id)} className="py-0 px-2 bg-black text-white mt-11 rounded-lg">X</button>
       </div>
       </div>
     ))}

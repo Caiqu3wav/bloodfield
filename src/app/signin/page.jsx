@@ -7,7 +7,7 @@ export default function SignInPage() {
     <div>
       <Navbar />
       <BottomHeader />
-      <div className='hero-container min-h-[500px] flex items-center justify-center'>
+      <div className='hero-container h-[100vh] flex items-center justify-center'>
         <SignInForm />
       </div>
     </div>

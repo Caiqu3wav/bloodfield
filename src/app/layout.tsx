@@ -3,6 +3,7 @@ import "./fonts.css";
 import SessionProvider from '../providers/auth-provider'
 import { getServerSession } from "next-auth";
 import { ReduxProviders } from "@/providers/ReduxProvider";
+import ToastProvider from "@/providers/ToastProvider";
 
 export const metadata = {
   title: "BloodField",
@@ -19,9 +20,11 @@ export default async function RootLayout({
     <ReduxProviders>
     <html lang="pt-br">
       <body>
+        <ToastProvider>
       <SessionProvider session={session}>
         {children}
         </SessionProvider>
+        </ToastProvider>
         </body>
     </html>
     </ReduxProviders>

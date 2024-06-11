@@ -17,15 +17,13 @@ export default function CartButton() {
   
   return (
     <>
-<button onClick={() => setIsActive(!isActive)} className="flex flex-col text-gray-400 text-xl">
+<button onClick={() => setIsActive(!isActive)} className="flex flex-col text-gray-400 text-2xl">
       <TiShoppingCart/>
-      <span className="absolute py-0 px-2 ml-[14px] mt-2 bg-red-600 rounded-full">{getItemsCount()}</span>
+      <span className="absolute py-1 text-sm px-2 ml-[14px] mt-2 bg-red-600 rounded-full">{getItemsCount()}</span>
       </button>
-      <span className="absolute py-0 px-2 ml-[14px] mt-2 bg-red-600 rounded-full">
       <AnimatePresence mode="wait">
       {isActive && <CartNav onClose={() => setIsActive(!isActive)}/>}
       </AnimatePresence>
-      </span>
       </>
   )
 }
