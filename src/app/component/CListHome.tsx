@@ -3,7 +3,6 @@ import bfLogo from "../../../public/img/bf-logo.png";
 import {ClotheCard} from "./ClotheCard";
 import productsLocal from "../api/productsLocal/index";
 
-
 export default function CListHome() {
   return (
     <div className="min-h-[500px] flex flex-col items-center justify-center
@@ -14,8 +13,7 @@ export default function CListHome() {
         <div className="w-full grid justify-items-center grid-cols-4 majortwo1-2:grid-cols-3
           midtwo4:grid-cols-2">
             {productsLocal.map(product => (
-        <ClotheCard key={product.id} foto={product.foto} name={product.name}
-              marca={product.marca} preco={product.preco} id={product.id} />
+        <ClotheCard key={product.id} product={product} />
             ))}
         </div>
       </div>

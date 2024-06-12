@@ -2,7 +2,7 @@
 import { FaSearchengin } from "react-icons/fa6";
 import { BiSolidLogInCircle } from "react-icons/bi";
 import { TiShoppingCart } from "react-icons/ti";
-import CartControl from "./CartControl";
+import CartButton from "./CartButton";
 import Link from "next/link";
 import { SignOutBtn } from "./SignOutBtn";
 import { useSession } from "next-auth/react";
@@ -122,7 +122,7 @@ export default function Navbar() {
       <SignOutBtn/>
       </div>
     )}
-      <CartControl/>
+      <CartButton/>
       </div>
     </header>
   )
