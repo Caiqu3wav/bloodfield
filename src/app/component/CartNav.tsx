@@ -118,7 +118,7 @@ export default function CartNav({ onClose }: Props) {
 </div>
 
 <div className={styles.footer}>
-<button>Finalizar compra</button>
+<button onClick={handleBuy}>Finalizar compra</button>
 </div>
             </div>
         </motion.div>
