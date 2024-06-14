@@ -82,7 +82,7 @@ export default function SignUpPage() {
 
   return (
     sessionStatus !== "authenticated" && (
-    <div>
+    <div className="flex flex-col h-[100vh]">
       <Navbar />
       <BottomHeader />
       <div className='hero-container h-[100vh] flex items-center justify-center'>

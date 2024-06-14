@@ -50,9 +50,9 @@ theme: "light",
   return (
     <>
     {data.data?.map((product) => (
-    <div key={product.id} className="h-[420px] w-[240px] majortwo3.1:w-[200px] midtw:w-[155px] flex 
+    <div key={product.id} className="h-fit min-h-[380px] w-[240px] majortwo3.1:w-[200px] midtw:w-[155px] flex 
     midtw:h-[300px] flex-col items-center justify-center
-     bg-black bg-opacity-75 rounded-2xl gap-2 mt-3 pt-3">
+     bg-black bg-opacity-75 rounded-2xl gap-2 mt-3">
         <Image src={`http://localhost:1337${product.attributes.pic.data.attributes.formats.small.url}`} width={220} height={220} className="w-[220px] h-[220px] majortwo3.1:w-[180px]
         majortwo3.1:h-[180px] midtw:w-[140px] midtw:h-[140px] rounded-lg" alt={product.attributes.Nome}/>
        <h1 className="text-red-500 text-[20px] midtw:text-[14px] text-center">{product.attributes.Nome}</h1>
