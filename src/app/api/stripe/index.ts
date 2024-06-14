@@ -6,6 +6,7 @@ const app = express();
 
 app.use(express.json());
 
+/*
 app.post('/create-checkout-session', async (req: Request, res: Response) => {
     const { products } = req.body;
 
@@ -21,3 +22,4 @@ app.post('/create-checkout-session', async (req: Request, res: Response) => {
     }));
 
     const session = await stripe.Checkout.SessionsResource})
+    */
