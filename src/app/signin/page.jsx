@@ -4,10 +4,9 @@ import SignInForm from "../component/SignInForm";
 
 export default function SignInPage() {
   return (
-    <div>
+    <div className="flex flex-col h-[100vh]">
       <Navbar />
-      <BottomHeader />
-      <div className='hero-container min-h-[500px] flex items-center justify-center'>
+      <div className='hero-container h-full flex items-center justify-center'>
         <SignInForm />
       </div>
     </div>

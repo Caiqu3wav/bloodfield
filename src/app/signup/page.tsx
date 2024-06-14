@@ -69,10 +69,9 @@ export default function SignUpPage() {
 
   return (
     sessionStatus !== "authenticated" && (
-    <div>
+    <div className="flex flex-col h-[100vh]">
       <Navbar />
-      <BottomHeader />
-      <div className='hero-container min-h-[500px] flex items-center justify-center'>
+      <div className='hero-container h-full flex items-center justify-center'>
       <form className='bg-gray-400 w-[400px] gap-3 rounded-xl flex flex-col items-center justify-center
      h-[300px]' onSubmit={handleSubmit}>
       <h1 className='text-xl font-semibold text-black'>Cadastro</h1>
